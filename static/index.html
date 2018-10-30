@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        img {
+        }
+    </style>
+</head>
+<body>
+    <img src="/ss.png" id="img">
+    <canvas width="450" height="300" id="canvas"></canvas>
+    <script src="/gauss.js"></script>
+    <script>
+        var img = document.getElementById('img');
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0, 450, 300);
+            // var data = ctx.getImageData(225, 0, 450, 300);
+            // var emptyData = ctx.createImageData(225, 300);
+            var data = ctx.getImageData(0, 0, 450, 300);
+            var emptyData = ctx.createImageData(450, 300);
+            emptyData = gaussBlur(data);
+            ctx.putImageData(emptyData, 0, 0);
+        }
+        // --------------------- 
+        // 作者：前端小bai 
+        // 来源：CSDN 
+        // 原文：https://blog.csdn.net/sunshineanl/article/details/70240250 
+        // 版权声明：本文为博主原创文章，转载请附上博文链接！
+    </script>
+</body>
+</html>
